@@ -3,14 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CHITKARA MUN</title>
+    <title>SymbiMUN | SIT Hyderabad</title>
     
+    <!-- FontAwesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
 
     <style>
         /* --- RESET & BASIC STYLES --- */
+        :root {
+            /* Red Wine Theme Colors */
+            --primary-color: #722F37; /* Merlot / Red Wine */
+            --primary-light: #9e1b32; /* Lighter Red for hovers */
+            --text-on-dark: #ffb3b3;  /* Light red for text on black background */
+            --bg-dark: #000;
+            --bg-card: #f8f9fa;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -19,7 +30,7 @@
 
         body {
             font-family: 'Roboto', sans-serif;
-            background-color: #000;
+            background-color: var(--bg-dark);
             color: #fff;
             overflow-x: hidden;
         }
@@ -36,9 +47,6 @@
 
         .text-center { text-align: center; }
         .flex { display: flex; flex-wrap: wrap; }
-        .justify-center { justify-content: center; }
-        .justify-between { justify-content: space-between; }
-        .align-center { align-items: center; }
 
         /* --- NAVBAR --- */
         .navbar {
@@ -47,7 +55,7 @@
             position: sticky;
             top: 0;
             z-index: 1000;
-            border-bottom: 1px solid #222;
+            border-bottom: 2px solid var(--primary-color);
         }
 
         .nav-container {
@@ -56,11 +64,21 @@
             align-items: center;
         }
 
-        .logo img { height: 40px; } /* Adjust based on your logo */
+        .logo h2 {
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: #fff;
+        }
 
         .nav-links {
             display: flex;
             gap: 20px;
+            align-items: center;
+        }
+
+        .nav-item {
+            position: relative;
         }
 
         .nav-links a {
@@ -68,9 +86,48 @@
             font-weight: 500;
             color: #fff;
             text-transform: uppercase;
+            padding: 10px 0;
+            display: block;
         }
 
-        .nav-links a:hover { color: #eb1c24; }
+        .nav-links a:hover { color: var(--primary-light); }
+
+        /* DROPDOWN MENU */
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #1a1a1a;
+            min-width: 220px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.5);
+            z-index: 1;
+            border-top: 2px solid var(--primary-color);
+        }
+
+        .nav-item:hover .dropdown-menu {
+            display: block;
+        }
+
+        .dropdown-menu li {
+            border-bottom: 1px solid #333;
+        }
+
+        .dropdown-menu li:last-child {
+            border-bottom: none;
+        }
+
+        .dropdown-menu a {
+            padding: 12px 15px;
+            text-transform: none; /* Can keep uppercase or not */
+            font-size: 13px;
+            color: #ccc;
+        }
+
+        .dropdown-menu a:hover {
+            background-color: var(--primary-color);
+            color: #fff;
+        }
 
         /* Mobile Menu Button */
         .menu-toggle {
@@ -89,21 +146,37 @@
 
         .mun-logo {
             width: 150px;
+            height: 150px;
+            object-fit: contain;
             margin-bottom: 20px;
             animation: fadeInDown 1s ease;
+            background: #111;
+            border-radius: 50%;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            border: 2px solid var(--primary-color);
         }
 
         .hero h1 {
             font-size: 28px;
             font-weight: 400;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
             letter-spacing: 1px;
             text-transform: uppercase;
+            line-height: 1.4;
+        }
+        
+        .hero h3 {
+            font-size: 18px;
+            font-weight: 300;
+            color: #ccc;
+            margin-bottom: 20px;
         }
 
         .divider {
             height: 1px;
-            background-color: #668cff;
+            background-color: var(--primary-color);
             margin: 20px auto;
             width: 100%;
             max-width: 900px;
@@ -122,6 +195,7 @@
         .date-display {
             font-size: 32px;
             font-weight: 300;
+            color: var(--text-on-dark);
         }
 
         .timer-container {
@@ -142,6 +216,7 @@
         .timer-value {
             font-size: 24px;
             font-weight: 700;
+            color: #fff;
         }
 
         /* --- BUTTONS --- */
@@ -155,33 +230,36 @@
 
         .btn-outline {
             background: transparent;
-            border: 1px solid #668cff;
+            border: 2px solid var(--primary-color);
             color: #fff;
             padding: 12px 30px;
             font-size: 16px;
             cursor: pointer;
             transition: 0.3s;
             text-transform: uppercase;
+            font-weight: 600;
         }
 
         .btn-outline:hover {
-            background: #668cff;
+            background: var(--primary-color);
             color: #fff;
+            box-shadow: 0 0 10px rgba(114, 47, 55, 0.5);
         }
 
         /* --- INFO CARDS SECTION --- */
         .content-section {
-            background-color: #fff; /* White/Light background container */
+            background-color: #fff;
             padding: 50px 0;
+            color: #333;
         }
 
         .info-card {
-            background-color: #f0f2f5; /* Light Gray Card */
-            color: #333;
+            background-color: var(--bg-card);
             padding: 30px;
             margin-bottom: 30px;
             border-radius: 4px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            border-left: 5px solid var(--primary-color);
         }
 
         .info-card h2 {
@@ -189,16 +267,17 @@
             margin-bottom: 15px;
             text-transform: uppercase;
             font-size: 22px;
+            color: var(--primary-color);
         }
 
         .info-card p {
             margin-bottom: 15px;
             line-height: 1.6;
-            color: #555;
+            color: #444;
         }
 
         .show-more-btn {
-            color: #668cff;
+            color: var(--primary-color);
             cursor: pointer;
             font-weight: 600;
             display: block;
@@ -210,16 +289,19 @@
             display: none;
             margin-top: 10px;
             font-style: italic;
-            border-left: 3px solid #668cff;
+            border-left: 3px solid var(--primary-color);
             padding-left: 15px;
+            background: rgba(114, 47, 55, 0.05);
+            padding: 10px;
         }
 
         /* --- FOOTER --- */
         footer {
-            background-color: #222;
+            background-color: #111;
             color: #fff;
             padding: 50px 0 20px 0;
             text-align: center;
+            border-top: 3px solid var(--primary-color);
         }
 
         .footer-content {
@@ -242,7 +324,7 @@
 
         .footer-icon {
             font-size: 24px;
-            color: #668cff;
+            color: var(--primary-color);
             margin-top: 5px;
         }
 
@@ -256,6 +338,17 @@
             color: #ccc;
             font-size: 14px;
             line-height: 1.6;
+            display: block;
+            word-break: break-all;
+        }
+
+        .contact-group {
+            margin-bottom: 15px;
+        }
+        
+        .contact-label {
+            color: var(--text-on-dark) !important;
+            font-weight: bold;
         }
 
         .social-icons {
@@ -269,16 +362,20 @@
             width: 40px;
             height: 40px;
             border-radius: 50%;
-            background: #333;
+            background: #222;
             display: flex;
             align-items: center;
             justify-content: center;
             color: #fff;
             font-size: 18px;
             transition: 0.3s;
+            border: 1px solid var(--primary-color);
         }
 
-        .social-circle:hover { background: #668cff; }
+        .social-circle:hover { 
+            background: var(--primary-color); 
+            border-color: #fff;
+        }
 
         /* --- MODAL --- */
         .modal {
@@ -287,21 +384,22 @@
             z-index: 2000;
             left: 0; top: 0;
             width: 100%; height: 100%;
-            background-color: rgba(0,0,0,0.7);
+            background-color: rgba(0,0,0,0.8);
         }
         .modal-content {
             background-color: #fefefe;
             margin: 15% auto;
             padding: 20px;
-            border: 1px solid #888;
+            border: 2px solid var(--primary-color);
             width: 90%;
             max-width: 400px;
             color: #000;
             border-radius: 5px;
         }
-        .close-modal { float: right; font-size: 28px; font-weight: bold; cursor: pointer; }
-        .modal input { width: 100%; padding: 10px; margin: 10px 0; }
-        .modal button { background: #668cff; color: white; border: none; padding: 10px 20px; cursor: pointer; }
+        .close-modal { float: right; font-size: 28px; font-weight: bold; cursor: pointer; color: var(--primary-color); }
+        .modal input { width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ccc; }
+        .modal button { background: var(--primary-color); color: white; border: none; padding: 10px 20px; cursor: pointer; width: 100%; font-weight: bold; }
+        .modal button:hover { background-color: var(--primary-light); }
 
         /* --- RESPONSIVE MEDIA QUERIES --- */
         @media (max-width: 768px) {
@@ -312,51 +410,82 @@
                 top: 60px;
                 left: 0;
                 width: 100%;
-                background: #111;
+                background: #000;
                 padding: 20px;
+                text-align: center;
+                border-bottom: 2px solid var(--primary-color);
             }
             .nav-links.active { display: flex; }
             .menu-toggle { display: block; }
+            
+            .nav-item { width: 100%; }
+            .dropdown-menu {
+                position: relative;
+                width: 100%;
+                background: #111;
+                box-shadow: none;
+                border-top: none;
+                display: none; /* Keep hidden initially on mobile */
+            }
+            .nav-item.active .dropdown-menu { display: block; } /* Use JS to toggle on mobile */
+            
+            /* Mobile hover fix - on click/tap show menu */
+            .nav-item:hover .dropdown-menu { display: block; }
 
             .event-info { flex-direction: column; gap: 20px; }
             .date-display { font-size: 24px; }
-            .hero h1 { font-size: 20px; padding: 0 10px; }
+            .hero h1 { font-size: 22px; padding: 0 10px; }
             
             .footer-content { flex-direction: column; text-align: center; }
             .footer-col { justify-content: center; text-align: center; flex-direction: column; align-items: center; }
+            .footer-text { text-align: center; }
         }
     </style>
 </head>
 <body>
 
+    <!-- NAVBAR -->
     <nav class="navbar">
         <div class="container nav-container">
             <div class="logo">
-                <img src="/assests/stilogo.jpeg" alt="Chitkara Logo" onerror="this.src='https://via.placeholder.com/130x50/ff0000/ffffff?text=CHITKARA'">
+                <img src="/assests/symbimun.jpeg" alt="SYMBIMUN" style="height: 40px; object-fit: contain;" onerror="this.src='https://via.placeholder.com/150x40/000000/FFFFFF?text=SYMBIMUN'">
             </div>
             <div class="menu-toggle" onclick="toggleMenu()">
                 <i class="fas fa-bars"></i>
             </div>
             <ul class="nav-links" id="navLinks">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Committees</a></li>
-                <li><a href="#">Team</a></li>
-                <li><a href="#">Register</a></li>
-                <li><a href="#">Delegate Resources</a></li>
+                <li class="nav-item"><a href="#">Home</a></li>
+                <!-- Committees Dropdown -->
+                <li class="nav-item">
+                    <a href="#">Committees <i class="fas fa-chevron-down" style="font-size: 0.8em;"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">AIPPM</a></li>
+                        <li><a href="#">UNGA</a></li>
+                        <li><a href="#">HUMAN RIGHTS COUNCIL</a></li>
+                        <li><a href="#">MOSSAD</a></li>
+                        <li><a href="#">CLIMATE CHANGE SUMMIT</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item"><a href="#">Team</a></li>
+                <li class="nav-item"><a href="#">Register</a></li>
+                <li class="nav-item"><a href="#">Resources</a></li>
             </ul>
         </div>
     </nav>
 
+    <!-- HERO SECTION -->
     <header class="hero">
         <div class="container">
-            <img src="/assests/symbimun.png" alt="MUN Globe" class="mun-logo" onerror="this.src='https://via.placeholder.com/150x150/ff0000/ffffff?text=LOGO'">
+            <!-- Placeholders for Logo -->
+            <img src="/assests/symbimun.png" alt="MUN Logo" class="mun-logo" onerror="this.src='https://via.placeholder.com/150/000000/722F37?text=LOGO'">
             
-            <h1>Chitkara International MUN and Climate Change Summit</h1>
+            <h1>SymbiMUN – Model United Nations Conference<br>at SIT Hyderabad</h1>
+            <h3>Transforming Education, Global Awareness, and Leadership</h3>
             
             <div class="divider"></div>
 
             <div class="event-info">
-                <div class="date-display">11th-13th January 2019</div>
+                <div class="date-display">7th-8th February 2026</div>
                 
                 <div class="timer-container">
                     <div class="timer-box">
@@ -381,63 +510,98 @@
             <div class="divider"></div>
 
             <div class="btn-group">
+                <!-- IP Application Removed -->
                 <button class="btn-outline" onclick="window.location.href='#'">Delegate Application</button>
-                <button class="btn-outline" onclick="window.location.href='#'">IP Application</button>
             </div>
         </div>
     </header>
 
+    <!-- CONTENT CARDS -->
     <section class="content-section">
         <div class="container">
             
+            <!-- Card 1: Introduction -->
+            <div class="info-card">
+                <h2>Welcome to SymbiMUN</h2>
+                <p>SymbiMUN is the flagship Model United Nations (MUN) conference organised by Symbiosis Institute of Technology (SIT), Hyderabad, offering a powerful platform for students to simulate the United Nations and engage in high-impact dialogue on global issues.</p>
+                <div id="more-intro" class="hidden-text">
+                    <p>Rooted in our institution’s commitment to holistic education, global awareness, and leadership development, SymbiMUN is more than a competition—it’s a transformative educational experience.</p>
+                    <p>At SymbiMUN, students step into the shoes of diplomats and policymakers, representing various countries and collaborating to resolve real-world challenges through negotiation, diplomacy, and debate.</p>
+                </div>
+                <span class="show-more-btn" onclick="toggleText('more-intro', this)">Show more <i class="fas fa-chevron-down"></i></span>
+            </div>
+
+            <!-- Card 2: What is MUN? -->
             <div class="info-card">
                 <h2>What is MUN?</h2>
-                <p>The Model United Nations Conference is a simulation of the United Nations. With an insight into currently significant issues, MUNs are the best tools in the making of a globally aware citizen where delegates discuss, deliberate and tackle various matters of concern with effective knowledge in a nuanced and diplomatic manner.</p>
+                <p>Model United Nations (MUN) is an academic simulation of the United Nations where students take on the roles of diplomats representing different countries or international organizations. Participants research global issues, debate international policies, negotiate resolutions, and collaborate with others to find practical solutions to real-world problems.</p>
                 <div id="more-1" class="hidden-text">
-                    <p>It gives the delegates a chance to hone their skills by bringing together various facets like Public Speaking, Research and Critical Analysis. Conferences like these are platforms to inspire the youth to think outside the box.</p>
-                    <p>“The Charter of the United Nations expresses the noblest aspirations of man...” - Haile Selassie</p>
+                    <p>Through structured committee sessions that follow UN procedures, students gain a deeper understanding of international relations, global governance, and contemporary world affairs while engaging in respectful dialogue and problem-solving.</p>
                 </div>
                 <span class="show-more-btn" onclick="toggleText('more-1', this)">Show more <i class="fas fa-chevron-down"></i></span>
             </div>
 
+            <!-- Card 3: About SymbiMUN (Mission) -->
             <div class="info-card">
-                <h2>About Chitkara MUN 2019</h2>
-                <p>Chitkara University MUN Society proudly announces the 7th Edition of the Chitkara International MUN and the First ever Climate Change Summit.</p>
-                <p>As we aim at leading the world towards a safer and sustainable path, with our arms wide open, we invite those who are motivated by the desire to achieve, make a change and be a step ahead to participate in one of the finest conferences ever.</p>
+                <h2>About the Initiative</h2>
+                <p>SymbiMUN is the official Model United Nations initiative of Symbiosis Institute of Technology, Hyderabad, dedicated to fostering diplomacy, leadership, and global awareness among students. It serves as a platform where participants engage in structured debates on pressing international, political, and socio-economic issues by representing countries and global institutions.</p>
                 <div id="more-2" class="hidden-text">
-                    <p>The Conference will be an amalgamation of five committees, each of which will be witness to intense deliberations and thought-provoking discussions. Also, we have the International Press which will be responsible for presenting the happenings of the event.</p>
+                    <p>Through high-quality committee simulations, SymbiMUN aims to cultivate critical thinking, public speaking, negotiation, and policy-making skills while encouraging respectful dialogue and collaborative problem-solving. The conference aspires to build globally conscious individuals who are confident, articulate, and prepared to take on leadership roles in an increasingly interconnected world.</p>
                 </div>
                 <span class="show-more-btn" onclick="toggleText('more-2', this)">Show more <i class="fas fa-chevron-down"></i></span>
+            </div>
+
+            <!-- Card 4: About SIT Hyderabad -->
+            <div class="info-card">
+                <h2>About SIT Hyderabad</h2>
+                <p>Symbiosis Institute of Technology (SIT), Hyderabad is a constituent of Symbiosis International (Deemed University), Pune. The institute offers undergraduate programs in engineering with a strong focus on academic excellence, innovation, and industry-oriented learning.</p>
+                <div id="more-3" class="hidden-text">
+                    <p>SIT Hyderabad emphasizes a holistic education through a blend of rigorous academics, practical exposure, research, and co-curricular activities. With state-of-the-art infrastructure, experienced faculty, and a vibrant campus culture, the institute aims to nurture technically competent, socially responsible, and globally aware professionals prepared to meet the challenges of the evolving technological landscape.</p>
+                </div>
+                <span class="show-more-btn" onclick="toggleText('more-3', this)">Show more <i class="fas fa-chevron-down"></i></span>
             </div>
 
         </div>
     </section>
 
+    <!-- FOOTER -->
     <footer>
         <div class="container">
             <div class="footer-content">
                 
+                <!-- Location -->
                 <div class="footer-col">
                     <div class="footer-icon"><i class="fas fa-map-marker-alt"></i></div>
                     <div class="footer-text">
-                        <p>Chitkara University,<br>Rajpura, Punjab, India</p>
+                        <h4>Location</h4>
+                        <p>Symbiosis Institute of Technology,<br>Hyderabad, Telangana, India</p>
                     </div>
                 </div>
 
+                <!-- Email -->
                 <div class="footer-col">
                     <div class="footer-icon"><i class="fas fa-envelope"></i></div>
                     <div class="footer-text">
-                        <p>secretariat.chitkaramun2018@gmail.com</p>
+                        <h4>Contact Email</h4>
+                        <p>25070725009@sithyd.siu.edu.in</p>
                     </div>
                 </div>
 
+                <!-- Phone / Contact Person -->
                 <div class="footer-col">
-                    <div class="footer-icon"><i class="fas fa-phone"></i></div>
+                    <div class="footer-icon"><i class="fas fa-user-tie"></i></div>
                     <div class="footer-text">
-                        <span>Mokshit Sood (Secretary General)</span><br>
-                        <span>+91-8054413092</span><br><br>
-                        <span>Geetanjali Sharma (Faculty Advisor)</span><br>
-                        <span>+91-9888294916</span>
+                        <div class="contact-group">
+                            <span class="contact-label">Secretary General</span>
+                            <span>Deepika Mishra</span>
+                            <span>25070725009@sithyd.siu.edu.in</span>
+                        </div>
+                        <br>
+                        <div class="contact-group">
+                            <span class="contact-label">Faculty Advisor</span>
+                            <span>Sai Prashanth Mallelu</span>
+                            <span>saiprashanth@sithyd.siu.edu.in</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -445,28 +609,31 @@
             <div class="social-icons">
                 <a href="#" class="social-circle"><i class="fab fa-facebook-f"></i></a>
                 <a href="#" class="social-circle"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="social-circle"><i class="fab fa-linkedin-in"></i></a>
             </div>
         </div>
     </footer>
 
+    <!-- Payment Modal (Hidden) -->
     <div id="paymentModal" class="modal">
         <div class="modal-content">
             <span class="close-modal" onclick="document.getElementById('paymentModal').style.display='none'">&times;</span>
             <h4>PAYMENT</h4>
             <input type="text" placeholder="Reference Code">
-            <button onclick="alert('Redirecting...')">Pay Now</button>
+            <button onclick="alert('Redirecting to payment gateway...')">Pay Now</button>
         </div>
     </div>
 
+    <!-- JAVASCRIPT -->
     <script>
         // Toggle Mobile Menu
-        function toggleMenu() {
+        window.toggleMenu = function() {
             const nav = document.getElementById('navLinks');
             nav.classList.toggle('active');
         }
 
         // Toggle Show More/Less
-        function toggleText(id, btn) {
+        window.toggleText = function(id, btn) {
             const content = document.getElementById(id);
             if (content.style.display === "block") {
                 content.style.display = "none";
@@ -478,11 +645,17 @@
         }
 
         // Countdown Timer Logic
-        // Since the event is in 2019, I am setting a target date relative to now to show the timer working.
-        // Change the 'countDownDate' to a specific date if you want.
-        const countDownDate = new Date().getTime() + (15 * 24 * 60 * 60 * 1000); // 15 days from now
+        // Target Date: February 7, 2026 09:00:00
+        const countDownDate = new Date("Feb 7, 2026 09:00:00").getTime();
 
-        const x = setInterval(function() {
+        // Fix for "Identifier has already been declared" error:
+        // Clear existing interval if this script runs multiple times in the same context
+        if (window.countdownInterval) {
+            clearInterval(window.countdownInterval);
+        }
+
+        // Use window property to avoid const/let redeclaration errors in some environments
+        window.countdownInterval = setInterval(function() {
             const now = new Date().getTime();
             const distance = countDownDate - now;
 
@@ -491,14 +664,26 @@
             const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-            document.getElementById("days").innerText = days;
-            document.getElementById("hours").innerText = hours;
-            document.getElementById("minutes").innerText = minutes;
-            document.getElementById("seconds").innerText = seconds;
+            // Display results with null checks
+            const daysEl = document.getElementById("days");
+            if (daysEl) daysEl.innerText = days > 0 ? days : "00";
+            
+            const hoursEl = document.getElementById("hours");
+            if (hoursEl) hoursEl.innerText = hours > 0 ? hours : "00";
+            
+            const minutesEl = document.getElementById("minutes");
+            if (minutesEl) minutesEl.innerText = minutes > 0 ? minutes : "00";
+            
+            const secondsEl = document.getElementById("seconds");
+            if (secondsEl) secondsEl.innerText = seconds > 0 ? seconds : "00";
 
+            // If the count down is finished
             if (distance < 0) {
-                clearInterval(x);
-                document.getElementById("days").innerText = "00";
+                clearInterval(window.countdownInterval);
+                if (daysEl) daysEl.innerText = "00";
+                if (hoursEl) hoursEl.innerText = "00";
+                if (minutesEl) minutesEl.innerText = "00";
+                if (secondsEl) secondsEl.innerText = "00";
             }
         }, 1000);
     </script>
