@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Team | SymbiMUN</title>
+    <title>UNSEC | SymbiMUN</title>
     
     <!-- FontAwesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
@@ -22,6 +22,9 @@
             --text-on-dark: #ffb3b3;  /* Light red for text on black background */
             --bg-dark: #050505;
             --bg-card: #f8f9fa;
+            
+            /* DISEC Specific Blue */
+            --disec-blue: #4b92db; /* UN Blue shade */
         }
 
         * {
@@ -73,8 +76,7 @@
         }
 
         .logo img {
-            height: 70px;
-            width: 200px;
+            height: 50px;
             object-fit: contain;
             transition: transform 0.3s ease;
         }
@@ -162,134 +164,167 @@
         }
         .menu-toggle:hover { color: var(--primary-color); }
 
-        /* --- PAGE HEADER --- */
-        .page-header {
-            padding: 100px 0 60px;
+        /* --- HERO SECTION --- */
+        .hero {
+            padding: 80px 0;
             text-align: center;
             background: linear-gradient(180deg, #000 0%, #110507 100%);
             border-bottom: 1px solid #333;
+            overflow: hidden;
         }
 
-        .page-header h1 {
+        .hero h1 {
             font-family: 'Playfair Display', serif;
             font-size: 48px;
             font-weight: 700;
-            color: #fff;
             text-transform: uppercase;
             letter-spacing: 2px;
-            animation: slideInDown 1s ease;
+            margin-bottom: 20px;
+            color: var(--disec-blue); /* Changed to Blue */
+            text-shadow: 0 0 20px rgba(75, 146, 219, 0.4); /* Blue glow */
         }
 
-        .divider {
-            height: 2px;
-            background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
-            margin: 20px auto;
-            width: 60%;
-            max-width: 400px;
+        .hero h2 {
+             font-size: 24px;
+             font-weight: 300;
+             color: #fff;
+             margin-bottom: 30px;
         }
 
-        /* --- TEAM SECTIONS --- */
-        .team-category-section {
+        .committee-logo-large {
+            width: 250px; /* Slightly larger since no ring */
+            height: 250px;
+            object-fit: contain;
+            margin: 0 auto 30px;
+            display: block;
+            /* Removed circle styles (border-radius, border, background, animation) */
+            filter: drop-shadow(0 0 15px rgba(75, 146, 219, 0.2)); /* Subtle blue drop shadow */
+        }
+
+        /* --- CONTENT SECTION --- */
+        .content-section {
             padding: 60px 0;
-            border-bottom: 1px solid #1a1a1a;
+            background-color: #fff;
+            color: #333;
         }
 
-        .team-category-section:last-child { border-bottom: none; }
-
-        .category-title {
-            text-align: center;
-            font-family: 'Playfair Display', serif;
-            font-size: 32px;
-            color: var(--primary-color);
+        .info-card {
+            background-color: var(--bg-card);
+            padding: 40px;
             margin-bottom: 40px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border-left: 6px solid var(--primary-color);
+        }
+
+        .info-card h2 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            margin-bottom: 20px;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            position: relative;
+            font-size: 28px;
+            color: var(--primary-color);
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
             display: inline-block;
-            left: 50%;
-            transform: translateX(-50%);
+        }
+
+        .info-card h3 {
+             font-size: 20px;
+             color: #000;
+             margin-top: 20px;
+             margin-bottom: 10px;
+        }
+
+        .info-card p, .info-card li {
+            margin-bottom: 15px;
+            line-height: 1.8;
+            color: #444;
+            font-size: 16px;
         }
         
-        .category-title::after {
-            content: '';
-            display: block;
-            width: 60px;
-            height: 3px;
-            background: #fff;
-            margin: 10px auto 0;
+        .info-card ul {
+            list-style: disc;
+            padding-left: 20px;
+            margin-bottom: 20px;
         }
 
-        .team-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
+        /* --- EXECUTIVE BOARD --- */
+        .eb-grid {
+            display: flex;
+            flex-wrap: wrap;
             justify-content: center;
+            gap: 50px;
+            margin-top: 40px;
         }
 
-        .team-card {
-            background: #111;
-            padding: 40px 20px;
-            border-radius: 8px;
+        .eb-member {
             text-align: center;
-            border: 1px solid #222;
-            transition: 0.3s;
-            position: relative;
-            overflow: hidden;
+            max-width: 300px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
-        .team-card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 3px;
-            background: var(--primary-color);
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.4s ease;
-        }
-
-        .team-card:hover {
-            transform: translateY(-5px);
-            background: #151515;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        }
-
-        .team-card:hover::before { transform: scaleX(1); }
-
-        .team-img {
-            width: 140px;
-            height: 140px;
+        .eb-img {
+            width: 220px;
+            height: 220px;
             border-radius: 50%;
-            background-color: #222;
-            margin: 0 auto 20px;
-            border: 2px solid var(--primary-color);
+            background: #f8f9fa;
+            margin: 0 auto 25px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 40px;
-            color: #444;
-            overflow: hidden;
-        }
-
-        .team-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+            font-size: 60px;
+            color: var(--primary-color);
+            border: 3px solid var(--primary-color);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            overflow: hidden; /* Ensures image stays in circle */
         }
         
-        .team-name {
-            font-size: 22px;
-            font-weight: 700;
-            margin-bottom: 5px;
-            color: #fff;
-            font-family: 'Playfair Display', serif;
+        .eb-img img {
+             width: 100%;
+             height: 100%;
+             object-fit: cover;
+        }
+        
+        .eb-member:hover .eb-img {
+             transform: translateY(-10px);
+             box-shadow: 0 15px 40px rgba(114, 47, 55, 0.3);
         }
 
-        .team-role {
-            font-size: 14px;
-            color: var(--primary-light);
+        .eb-name {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 24px;
+            margin-bottom: 8px;
+            color: #222;
+        }
+
+        .eb-role {
+            color: var(--primary-color);
             font-weight: 600;
+            font-size: 16px;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
+        }
+
+        .resources-btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 12px 30px;
+            border-radius: 5px;
+            font-weight: bold;
+            margin-top: 20px;
+            transition: 0.3s;
+        }
+
+        .resources-btn:hover {
+            background-color: var(--primary-light);
+            color: #fff;
+            transform: translateY(-2px);
         }
 
         /* --- FOOTER --- */
@@ -341,9 +376,6 @@
             word-break: break-all;
         }
 
-        .contact-group { margin-bottom: 20px; }
-        .contact-label { color: var(--primary-light) !important; font-weight: bold; }
-
         .social-icons {
             margin-top: 40px;
             display: flex;
@@ -371,10 +403,6 @@
             transform: scale(1.1);
         }
 
-        /* ANIMATIONS */
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        @keyframes slideInDown { from { opacity: 0; transform: translateY(-30px); } to { opacity: 1; transform: translateY(0); } }
-
         /* --- RESPONSIVE --- */
         @media (max-width: 768px) {
             .nav-links {
@@ -398,12 +426,16 @@
             }
             .nav-item:hover .dropdown-menu { display: block; }
 
-            .page-header h1 { font-size: 32px; }
-            .category-title { font-size: 24px; }
-            
+            .hero h1 { font-size: 36px; padding: 0 15px; }
+            .hero h2 { font-size: 18px; padding: 0 15px; }
             .footer-content { flex-direction: column; text-align: center; }
             .footer-col { justify-content: center; text-align: center; flex-direction: column; align-items: center; }
+            
+            .eb-img { width: 180px; height: 180px; }
         }
+        
+        /* Animations */
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     </style>
 </head>
 <body>
@@ -442,132 +474,55 @@
         </div>
     </nav>
 
-    <!-- PAGE HEADER -->
-    <header class="page-header">
+    <!-- HERO SECTION -->
+    <header class="hero">
         <div class="container">
-            <h1>Our Team</h1>
-            <div class="divider"></div>
-            <p style="color: #aaa; margin-top: 15px;">Meet the dedicated people behind SymbiMUN</p>
+            <img src="assests/disec.png" alt="DISEC Logo" class="committee-logo-large" onerror="this.src='https://via.placeholder.com/250x250/000000/FFFFFF?text=DISEC'">
+            <h1>United Nations Security council</h1>
         </div>
     </header>
 
-    <!-- SECTION 1: FACULTY ADVISORS -->
-    <section class="team-category-section">
+    <!-- CONTENT SECTION -->
+    <section class="content-section">
         <div class="container">
-            <h2 class="category-title">Faculty Advisors</h2>
-            <div class="team-grid">
-                <div class="team-card">
-                    <div class="team-img"><i class="fas fa-chalkboard-teacher"></i></div>
-                    <h3 class="team-name">Sai Prashanth Mallelu</h3>
-                    <p class="team-role">Faculty Advisor</p>
-                </div>
-                <!-- Add more advisors here if needed -->
+            
+            <!-- About Committee -->
+            <div class="info-card">
+                <h2>About The Committee</h2>
+                <p>The Disarmament and International Security Committee (DISEC) is the First Committee of the United Nations General Assembly. It deals with disarmament, global challenges, and threats to peace that affect the international community and seeks out solutions to the challenges in the international security regime.</p>
+                <p>It considers all disarmament and international security matters within the scope of the Charter or relating to the powers and functions of any other organ of the United Nations; the general principles of cooperation in the maintenance of international peace and security, as well as principles governing disarmament and the regulation of armaments; promotion of cooperative arrangements and measures aimed at strengthening stability through lower levels of armaments.</p>
             </div>
-        </div>
-    </section>
 
-    <!-- SECTION 2: SECRETARIAT -->
-    <section class="team-category-section" style="background-color: #0a0a0a;">
-        <div class="container">
-            <h2 class="category-title">Secretariat</h2>
-            <div class="team-grid">
-                <div class="team-card">
-                    <div class="team-img"><i class="fas fa-user-tie"></i></div>
-                    <h3 class="team-name">Deepika Mishra</h3>
-                    <p class="team-role">Secretary General</p>
-                </div>
-                <div class="team-card">
-                    <div class="team-img"><i class="fas fa-user"></i></div>
-                    <h3 class="team-name">Name Here</h3>
-                    <p class="team-role">Director General</p>
-                </div>
-                 <div class="team-card">
-                    <div class="team-img"><i class="fas fa-user"></i></div>
-                    <h3 class="team-name">Name Here</h3>
-                    <p class="team-role">Charge D'Affaires</p>
-                </div>
+            <!-- Agenda -->
+            <div class="info-card">
+                <h2>Agenda</h2>
+                <h3>Topic: Combating Illicit Arms Trade in Conflict Zones</h3>
+                <p>This agenda focuses on the proliferation of small arms and light weapons in unstable regions, examining methods to strengthen international protocols, improve tracking mechanisms, and prevent arms diversion to non-state actors.</p>
+                <a href="#" class="resources-btn"><i class="fas fa-file-download"></i> Download Background Guide</a>
             </div>
-        </div>
-    </section>
 
-    <!-- SECTION 3: USGs & UDGs -->
-    <section class="team-category-section">
-        <div class="container">
-            <h2 class="category-title">USGs & UDGs</h2>
-            <div class="team-grid">
-                <div class="team-card">
-                    <div class="team-img"><i class="fas fa-user-friends"></i></div>
-                    <h3 class="team-name">Name Here</h3>
-                    <p class="team-role">Under Secretary General</p>
-                </div>
-                <div class="team-card">
-                    <div class="team-img"><i class="fas fa-user-friends"></i></div>
-                    <h3 class="team-name">Name Here</h3>
-                    <p class="team-role">Under Director General</p>
-                </div>
-                <div class="team-card">
-                    <div class="team-img"><i class="fas fa-user-friends"></i></div>
-                    <h3 class="team-name">Name Here</h3>
-                    <p class="team-role">Under Secretary General</p>
+            <!-- Executive Board -->
+            <div class="info-card">
+                <h2>Executive Board</h2>
+                <div class="eb-grid">
+                    <div class="eb-member">
+                        <div class="eb-img"><i class="fas fa-user"></i></div>
+                        <h3 class="eb-name">Name Here</h3>
+                        <p class="eb-role">Chairperson</p>
+                    </div>
+                    <div class="eb-member">
+                        <div class="eb-img"><i class="fas fa-user"></i></div>
+                        <h3 class="eb-name">Name Here</h3>
+                        <p class="eb-role">Vice-Chairperson</p>
+                    </div>
+                    <div class="eb-member">
+                        <div class="eb-img"><i class="fas fa-user"></i></div>
+                        <h3 class="eb-name">Name Here</h3>
+                        <p class="eb-role">Rapporteur</p>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- SECTION 4: DELEGATE AFFAIRS -->
-    <section class="team-category-section" style="background-color: #0a0a0a;">
-        <div class="container">
-            <h2 class="category-title">Delegate Affairs</h2>
-            <div class="team-grid">
-                <div class="team-card">
-                    <div class="team-img"><i class="fas fa-headset"></i></div>
-                    <h3 class="team-name">Name Here</h3>
-                    <p class="team-role">Head of Delegate Affairs</p>
-                </div>
-                <div class="team-card">
-                    <div class="team-img"><i class="fas fa-headset"></i></div>
-                    <h3 class="team-name">Name Here</h3>
-                    <p class="team-role">Member</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SECTION 5: INTERNATIONAL PRESS AFFAIRS -->
-    <section class="team-category-section">
-        <div class="container">
-            <h2 class="category-title">International Press Affairs</h2>
-            <div class="team-grid">
-                <div class="team-card">
-                    <div class="team-img"><i class="fas fa-camera"></i></div>
-                    <h3 class="team-name">Name Here</h3>
-                    <p class="team-role">Head of IP</p>
-                </div>
-                <div class="team-card">
-                    <div class="team-img"><i class="fas fa-pen-nib"></i></div>
-                    <h3 class="team-name">Name Here</h3>
-                    <p class="team-role">Editor in Chief</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SECTION 6: EXECUTIVE BOARD AFFAIRS -->
-    <section class="team-category-section" style="background-color: #0a0a0a;">
-        <div class="container">
-            <h2 class="category-title">Executive Board Affairs</h2>
-            <div class="team-grid">
-                <div class="team-card">
-                    <div class="team-img"><i class="fas fa-gavel"></i></div>
-                    <h3 class="team-name">Name Here</h3>
-                    <p class="team-role">Head of EB Affairs</p>
-                </div>
-                <div class="team-card">
-                    <div class="team-img"><i class="fas fa-balance-scale"></i></div>
-                    <h3 class="team-name">Name Here</h3>
-                    <p class="team-role">Member</p>
-                </div>
-            </div>
         </div>
     </section>
 

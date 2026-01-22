@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Team | SymbiMUN</title>
+    <title>Committees | SymbiMUN</title>
     
     <!-- FontAwesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
@@ -32,7 +32,7 @@
 
         body {
             font-family: 'Roboto', sans-serif;
-            background-color: var(--bg-dark);
+            background-color: white;
             color: #fff;
             overflow-x: hidden;
         }
@@ -73,8 +73,7 @@
         }
 
         .logo img {
-            height: 70px;
-            width: 200px;
+            height: 50px;
             object-fit: contain;
             transition: transform 0.3s ease;
         }
@@ -162,134 +161,153 @@
         }
         .menu-toggle:hover { color: var(--primary-color); }
 
-        /* --- PAGE HEADER --- */
-        .page-header {
-            padding: 100px 0 60px;
+        /* --- HERO SECTION --- */
+        .hero {
+            padding: 100px 0 80px;
             text-align: center;
             background: linear-gradient(180deg, #000 0%, #110507 100%);
             border-bottom: 1px solid #333;
+            overflow: hidden;
         }
 
-        .page-header h1 {
+        /* Color Changing Text Animation */
+        @keyframes colorCycle {
+            0% { color: #fff; text-shadow: 0 0 10px rgba(255,255,255,0.2); }
+            33% { color: var(--primary-color); text-shadow: 0 0 20px rgba(114, 47, 55, 0.6); }
+            66% { color: var(--primary-light); text-shadow: 0 0 20px rgba(158, 27, 50, 0.6); }
+            100% { color: #fff; text-shadow: 0 0 10px rgba(255,255,255,0.2); }
+        }
+
+        .hero h1 {
             font-family: 'Playfair Display', serif;
-            font-size: 48px;
+            font-size: 56px;
             font-weight: 700;
-            color: #fff;
             text-transform: uppercase;
             letter-spacing: 2px;
-            animation: slideInDown 1s ease;
+            margin-bottom: 20px;
+            animation: colorCycle 4s infinite ease-in-out; /* The requested animation */
+        }
+        
+        .hero p {
+            font-size: 20px;
+            color: #aaa;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
         }
 
         .divider {
             height: 2px;
             background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
-            margin: 20px auto;
+            margin: 30px auto;
             width: 60%;
             max-width: 400px;
         }
 
-        /* --- TEAM SECTIONS --- */
-        .team-category-section {
-            padding: 60px 0;
-            border-bottom: 1px solid #1a1a1a;
+        /* --- COMMITTEES GRID --- */
+        .committees-section {
+            padding: 80px 0;
+            background-color: #202020;
         }
 
-        .team-category-section:last-child { border-bottom: none; }
-
-        .category-title {
-            text-align: center;
-            font-family: 'Playfair Display', serif;
-            font-size: 32px;
-            color: var(--primary-color);
-            margin-bottom: 40px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            position: relative;
-            display: inline-block;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-        
-        .category-title::after {
-            content: '';
-            display: block;
-            width: 60px;
-            height: 3px;
-            background: #fff;
-            margin: 10px auto 0;
-        }
-
-        .team-grid {
+        .committee-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            justify-content: center;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+            padding: 20px 0;
         }
 
-        .team-card {
+        .committee-card {
             background: #111;
-            padding: 40px 20px;
-            border-radius: 8px;
-            text-align: center;
             border: 1px solid #222;
-            transition: 0.3s;
-            position: relative;
+            border-radius: 12px;
             overflow: hidden;
+            transition: all 0.4s ease;
+            position: relative;
+            display: flex;
+            flex-direction: column;
         }
 
-        .team-card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 3px;
-            background: var(--primary-color);
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.4s ease;
+        .committee-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(114, 47, 55, 0.15);
+            border-color: var(--primary-color);
         }
 
-        .team-card:hover {
-            transform: translateY(-5px);
-            background: #151515;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        }
-
-        .team-card:hover::before { transform: scaleX(1); }
-
-        .team-img {
-            width: 140px;
-            height: 140px;
-            border-radius: 50%;
-            background-color: #222;
-            margin: 0 auto 20px;
-            border: 2px solid var(--primary-color);
+        .card-img-container {
+            height: 200px;
+            background: #1a1a1a;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 40px;
-            color: #444;
+            border-bottom: 2px solid var(--primary-color);
+            position: relative;
             overflow: hidden;
         }
 
-        .team-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+        .card-img-container img {
+            max-width: 60%;
+            max-height: 80%;
+            object-fit: contain;
+            transition: transform 0.5s ease;
+            z-index: 1;
         }
         
-        .team-name {
-            font-size: 22px;
-            font-weight: 700;
-            margin-bottom: 5px;
-            color: #fff;
-            font-family: 'Playfair Display', serif;
+        /* Background effect behind logo */
+        .card-img-container::after {
+            content: '';
+            position: absolute;
+            width: 100%; height: 100%;
+            background: radial-gradient(circle, rgba(114, 47, 55, 0.2) 0%, rgba(0,0,0,0) 70%);
+            top: 0; left: 0;
         }
 
-        .team-role {
-            font-size: 14px;
-            color: var(--primary-light);
-            font-weight: 600;
+        .committee-card:hover .card-img-container img {
+            transform: scale(1.1);
+        }
+
+        .card-content {
+            padding: 30px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .committee-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 15px;
             text-transform: uppercase;
+        }
+
+        .committee-desc {
+            font-size: 15px;
+            color: #bbb;
+            line-height: 1.6;
+            margin-bottom: 25px;
+            flex-grow: 1;
+        }
+
+        .read-more-btn {
+            align-self: flex-start;
+            padding: 10px 25px;
+            background: transparent;
+            border: 1px solid var(--primary-color);
+            color: #fff;
+            text-transform: uppercase;
+            font-size: 13px;
+            font-weight: 600;
             letter-spacing: 1px;
+            cursor: pointer;
+            transition: 0.3s;
+            border-radius: 4px;
+        }
+
+        .read-more-btn:hover {
+            background: var(--primary-color);
+            box-shadow: 0 0 15px rgba(114, 47, 55, 0.5);
         }
 
         /* --- FOOTER --- */
@@ -341,9 +359,6 @@
             word-break: break-all;
         }
 
-        .contact-group { margin-bottom: 20px; }
-        .contact-label { color: var(--primary-light) !important; font-weight: bold; }
-
         .social-icons {
             margin-top: 40px;
             display: flex;
@@ -371,10 +386,6 @@
             transform: scale(1.1);
         }
 
-        /* ANIMATIONS */
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        @keyframes slideInDown { from { opacity: 0; transform: translateY(-30px); } to { opacity: 1; transform: translateY(0); } }
-
         /* --- RESPONSIVE --- */
         @media (max-width: 768px) {
             .nav-links {
@@ -398,12 +409,13 @@
             }
             .nav-item:hover .dropdown-menu { display: block; }
 
-            .page-header h1 { font-size: 32px; }
-            .category-title { font-size: 24px; }
-            
+            .hero h1 { font-size: 36px; padding: 0 15px; }
             .footer-content { flex-direction: column; text-align: center; }
             .footer-col { justify-content: center; text-align: center; flex-direction: column; align-items: center; }
         }
+        
+        /* Animations */
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     </style>
 </head>
 <body>
@@ -427,12 +439,12 @@
             <ul class="nav-links" id="navLinks">
                 <li class="nav-item"><a href="index.html">Home</a></li>
                 <li class="nav-item">
-                    <a href="committee.html">Committees <i class="fas fa-chevron-down" style="font-size: 0.7em; margin-left: 5px;"></i></a>
+                    <a href="committees.html">Committees <i class="fas fa-chevron-down" style="font-size: 0.7em; margin-left: 5px;"></i></a>
                     <ul class="dropdown-menu">
-                        <li><a href="DISEC.html">DISEC</a></li>
-                        <li><a href="IFI.html">IFI</a></li>
-                        <li><a href="IP.html">IP</a></li>
-                        <li><a href="UNSEC.html">UNSC</a></li>
+                        <li><a href="#disec">DISEC</a></li>
+                        <li><a href="#ifi">IFI</a></li>
+                        <li><a href="#ip">IP</a></li>
+                        <li><a href="#unsc">UNSC</a></li>
                     </ul>
                 </li>
                 <li class="nav-item"><a href="team.html">Team</a></li>
@@ -442,131 +454,70 @@
         </div>
     </nav>
 
-    <!-- PAGE HEADER -->
-    <header class="page-header">
+    <!-- HERO SECTION -->
+    <header class="hero">
         <div class="container">
-            <h1>Our Team</h1>
+            <!-- Animated Color Changing Text -->
+            <h1>OUR COMMITTEES</h1>
+            
             <div class="divider"></div>
-            <p style="color: #aaa; margin-top: 15px;">Meet the dedicated people behind SymbiMUN</p>
+            <p>Explore the dynamic committees of SymbiMUN 2026, designed to challenge your diplomacy, negotiation skills, and global awareness.</p>
         </div>
     </header>
 
-    <!-- SECTION 1: FACULTY ADVISORS -->
-    <section class="team-category-section">
+    <!-- COMMITTEES GRID -->
+    <section class="committees-section">
         <div class="container">
-            <h2 class="category-title">Faculty Advisors</h2>
-            <div class="team-grid">
-                <div class="team-card">
-                    <div class="team-img"><i class="fas fa-chalkboard-teacher"></i></div>
-                    <h3 class="team-name">Sai Prashanth Mallelu</h3>
-                    <p class="team-role">Faculty Advisor</p>
+            <div class="committee-grid">
+                
+                <!-- Committee 1: DISEC -->
+                <div class="committee-card" id="disec">
+                    <div class="card-img-container">
+                        <img src="assests/disec.jpeg" alt="DISEC" onerror="this.src='https://via.placeholder.com/150x150/000000/FFFFFF?text=DISEC'">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="committee-name">DISEC</h3>
+                        <p class="committee-desc">Disarmament and International Security Committee. The First Committee of the General Assembly dealing with disarmament, global challenges, and threats to peace.</p>
+                        <button class="read-more-btn">Learn More</button>
+                    </div>
                 </div>
-                <!-- Add more advisors here if needed -->
-            </div>
-        </div>
-    </section>
 
-    <!-- SECTION 2: SECRETARIAT -->
-    <section class="team-category-section" style="background-color: #0a0a0a;">
-        <div class="container">
-            <h2 class="category-title">Secretariat</h2>
-            <div class="team-grid">
-                <div class="team-card">
-                    <div class="team-img"><i class="fas fa-user-tie"></i></div>
-                    <h3 class="team-name">Deepika Mishra</h3>
-                    <p class="team-role">Secretary General</p>
+                <!-- Committee 2: IFI -->
+                <div class="committee-card" id="ifi">
+                    <div class="card-img-container">
+                        <img src="assests/ifi.jpeg" alt="IFI" onerror="this.src='https://via.placeholder.com/150x150/000000/FFFFFF?text=IFI'">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="committee-name">IFI</h3>
+                        <p class="committee-desc">Indian Film Industry. A specialized committee simulating the creative, regulatory, and commercial dynamics of Indian cinema.</p>
+                        <button class="read-more-btn">Learn More</button>
+                    </div>
                 </div>
-                <div class="team-card">
-                    <div class="team-img"><i class="fas fa-user"></i></div>
-                    <h3 class="team-name">Name Here</h3>
-                    <p class="team-role">Director General</p>
-                </div>
-                 <div class="team-card">
-                    <div class="team-img"><i class="fas fa-user"></i></div>
-                    <h3 class="team-name">Name Here</h3>
-                    <p class="team-role">Charge D'Affaires</p>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- SECTION 3: USGs & UDGs -->
-    <section class="team-category-section">
-        <div class="container">
-            <h2 class="category-title">USGs & UDGs</h2>
-            <div class="team-grid">
-                <div class="team-card">
-                    <div class="team-img"><i class="fas fa-user-friends"></i></div>
-                    <h3 class="team-name">Name Here</h3>
-                    <p class="team-role">Under Secretary General</p>
+                <!-- Committee 3: IP -->
+                <div class="committee-card" id="ip">
+                    <div class="card-img-container">
+                        <img src="assests/ip.jpeg" alt="IP" onerror="this.src='https://via.placeholder.com/150x150/000000/FFFFFF?text=IP'">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="committee-name">International Press</h3>
+                        <p class="committee-desc">The observer corps comprising reporters and photographers who capture the proceedings and publish newsletters.</p>
+                        <button class="read-more-btn">Learn More</button>
+                    </div>
                 </div>
-                <div class="team-card">
-                    <div class="team-img"><i class="fas fa-user-friends"></i></div>
-                    <h3 class="team-name">Name Here</h3>
-                    <p class="team-role">Under Director General</p>
-                </div>
-                <div class="team-card">
-                    <div class="team-img"><i class="fas fa-user-friends"></i></div>
-                    <h3 class="team-name">Name Here</h3>
-                    <p class="team-role">Under Secretary General</p>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- SECTION 4: DELEGATE AFFAIRS -->
-    <section class="team-category-section" style="background-color: #0a0a0a;">
-        <div class="container">
-            <h2 class="category-title">Delegate Affairs</h2>
-            <div class="team-grid">
-                <div class="team-card">
-                    <div class="team-img"><i class="fas fa-headset"></i></div>
-                    <h3 class="team-name">Name Here</h3>
-                    <p class="team-role">Head of Delegate Affairs</p>
+                <!-- Committee 4: UNSC -->
+                <div class="committee-card" id="unsc">
+                    <div class="card-img-container">
+                        <img src="assests/unsc.jpeg" alt="UNSC" onerror="this.src='https://via.placeholder.com/150x150/000000/FFFFFF?text=UNSC'">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="committee-name">UNSC</h3>
+                        <p class="committee-desc">United Nations Security Council. One of the six principal organs of the UN, charged with ensuring international peace and security.</p>
+                        <button class="read-more-btn">Learn More</button>
+                    </div>
                 </div>
-                <div class="team-card">
-                    <div class="team-img"><i class="fas fa-headset"></i></div>
-                    <h3 class="team-name">Name Here</h3>
-                    <p class="team-role">Member</p>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- SECTION 5: INTERNATIONAL PRESS AFFAIRS -->
-    <section class="team-category-section">
-        <div class="container">
-            <h2 class="category-title">International Press Affairs</h2>
-            <div class="team-grid">
-                <div class="team-card">
-                    <div class="team-img"><i class="fas fa-camera"></i></div>
-                    <h3 class="team-name">Name Here</h3>
-                    <p class="team-role">Head of IP</p>
-                </div>
-                <div class="team-card">
-                    <div class="team-img"><i class="fas fa-pen-nib"></i></div>
-                    <h3 class="team-name">Name Here</h3>
-                    <p class="team-role">Editor in Chief</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SECTION 6: EXECUTIVE BOARD AFFAIRS -->
-    <section class="team-category-section" style="background-color: #0a0a0a;">
-        <div class="container">
-            <h2 class="category-title">Executive Board Affairs</h2>
-            <div class="team-grid">
-                <div class="team-card">
-                    <div class="team-img"><i class="fas fa-gavel"></i></div>
-                    <h3 class="team-name">Name Here</h3>
-                    <p class="team-role">Head of EB Affairs</p>
-                </div>
-                <div class="team-card">
-                    <div class="team-img"><i class="fas fa-balance-scale"></i></div>
-                    <h3 class="team-name">Name Here</h3>
-                    <p class="team-role">Member</p>
-                </div>
             </div>
         </div>
     </section>
