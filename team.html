@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Team | SymbiMUN</title>
+    
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- RESET & BASIC STYLES --- */
+        :root {
+            /* Red Wine Theme Colors */
+            --primary-color: #722F37; /* Merlot / Red Wine */
+            --primary-light: #9e1b32; /* Lighter Red for hovers */
+            --primary-dark: #4a1a21;
+            --text-on-dark: #ffb3b3;  /* Light red for text on black background */
+            --bg-dark: #050505;
+            --bg-card: #f8f9fa;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--bg-dark);
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; }
+
+        /* --- UTILITIES --- */
+        .container {
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        .container-fluid {
+            width: 100%;
+            padding: 0 40px; 
+            margin: 0 auto;
+        }
+
+        .text-center { text-align: center; }
+
+        /* --- NAVBAR --- */
+        .navbar {
+            background-color: rgba(0, 0, 0, 0.95);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 3px solid var(--primary-color);
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 70px;
+            width: 200px;
+            object-fit: contain;
+            transition: transform 0.3s ease;
+        }
+
+        .logo img:hover { transform: scale(1.05); }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .nav-item { position: relative; }
+
+        .nav-links a {
+            font-size: 16px; 
+            font-weight: 700;
+            color: #fff;
+            text-transform: uppercase;
+            padding: 10px 0;
+            display: block;
+            letter-spacing: 1px;
+            position: relative;
+        }
+
+        .nav-links > .nav-item > a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 5px;
+            left: 0;
+            background-color: var(--primary-color);
+            transition: width 0.3s;
+        }
+
+        .nav-links > .nav-item > a:hover::after { width: 100%; }
+        .nav-links a:hover { color: var(--primary-text); }
+
+        /* DROPDOWN MENU */
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #1a1a1a;
+            min-width: 240px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.8);
+            z-index: 1;
+            border-top: 3px solid var(--primary-color);
+            border-radius: 0 0 5px 5px;
+            padding: 10px 0;
+        }
+
+        .nav-item:hover .dropdown-menu {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .dropdown-menu li { border-bottom: 1px solid #333; }
+        .dropdown-menu li:last-child { border: none; }
+
+        .dropdown-menu a {
+            padding: 12px 20px;
+            text-transform: none;
+            font-size: 14px;
+            color: #ccc;
+            font-weight: 500;
+        }
+
+        .dropdown-menu a:hover {
+            background-color: var(--primary-color);
+            color: #fff;
+            padding-left: 25px; 
+        }
+
+        /* Mobile Menu Button */
+        .menu-toggle {
+            display: none;
+            color: #fff;
+            font-size: 28px;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        .menu-toggle:hover { color: var(--primary-color); }
+
+        /* --- PAGE HEADER --- */
+        .page-header {
+            padding: 100px 0 60px;
+            text-align: center;
+            background: linear-gradient(180deg, #000 0%, #110507 100%);
+            border-bottom: 1px solid #333;
+        }
+
+        .page-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 48px;
+            font-weight: 700;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            animation: slideInDown 1s ease;
+        }
+
+        .divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
+            margin: 20px auto;
+            width: 60%;
+            max-width: 400px;
+        }
+
+        /* --- TEAM SECTIONS --- */
+        .team-category-section {
+            padding: 60px 0;
+            border-bottom: 1px solid #1a1a1a;
+        }
+
+        .team-category-section:last-child { border-bottom: none; }
+
+        .category-title {
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            color: var(--primary-color);
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .category-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: #fff;
+            margin: 10px auto 0;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            justify-content: center;
+        }
+
+        .team-card {
+            background: #111;
+            padding: 40px 20px;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid #222;
+            transition: 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .team-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 3px;
+            background: var(--primary-color);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+
+        .team-card:hover {
+            transform: translateY(-5px);
+            background: #151515;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .team-card:hover::before { transform: scaleX(1); }
+
+        .team-img {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            background-color: #222;
+            margin: 0 auto 20px;
+            border: 2px solid var(--primary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            color: #444;
+            overflow: hidden;
+        }
+
+        .team-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .team-name {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 5px;
+            color: #fff;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .team-role {
+            font-size: 14px;
+            color: var(--primary-light);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: #050505;
+            color: #fff;
+            padding: 60px 0 20px 0;
+            text-align: center;
+            border-top: 5px solid var(--primary-color);
+        }
+
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        .footer-col {
+            flex: 1;
+            min-width: 250px;
+            margin-bottom: 40px;
+            display: flex;
+            gap: 20px;
+            padding: 0 10px;
+        }
+
+        .footer-icon {
+            font-size: 28px;
+            color: var(--primary-color);
+            margin-top: 5px;
+        }
+
+        .footer-text h4 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #fff;
+            font-family: 'Playfair Display', serif;
+            letter-spacing: 1px;
+        }
+        
+        .footer-text p, .footer-text span {
+            color: #bbb;
+            font-size: 15px;
+            line-height: 1.7;
+            display: block;
+            word-break: break-all;
+        }
+
+        .contact-group { margin-bottom: 20px; }
+        .contact-label { color: var(--primary-light) !important; font-weight: bold; }
+
+        .social-icons {
+            margin-top: 40px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .social-circle {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: #111;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 20px;
+            transition: 0.3s;
+            border: 1px solid #333;
+        }
+
+        .social-circle:hover { 
+            background: var(--primary-color); 
+            border-color: var(--primary-color);
+            transform: scale(1.1);
+        }
+
+        /* ANIMATIONS */
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slideInDown { from { opacity: 0; transform: translateY(-30px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%; left: 0; width: 100%;
+                background: rgba(10, 10, 10, 0.98); 
+                padding: 20px 0;
+                text-align: center;
+                border-bottom: 3px solid var(--primary-color);
+            }
+            .nav-links.active { display: flex; }
+            .menu-toggle { display: block; }
+            .nav-item { width: 100%; }
+            .nav-links a { padding: 15px 0; border-bottom: 1px solid #222; }
+            
+            .dropdown-menu {
+                position: static; width: 100%; background: #000;
+                display: none; padding: 0; border: none;
+            }
+            .nav-item:hover .dropdown-menu { display: block; }
+
+            .page-header h1 { font-size: 32px; }
+            .category-title { font-size: 24px; }
+            
+            .footer-content { flex-direction: column; text-align: center; }
+            .footer-col { justify-content: center; text-align: center; flex-direction: column; align-items: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="container-fluid nav-container">
+            <!-- Logo Whole Left -->
+            <div class="logo">
+                <a href="index.html">
+                    <img src="assests/images (2)-Photoroom.png" alt="SYMBIMUN" onerror="this.src='https://via.placeholder.com/150x50/000000/FFFFFF?text=SYMBIMUN'">
+                </a>
+            </div>
+
+            <!-- Hamburger Icon -->
+            <div class="menu-toggle" onclick="toggleMenu()">
+                <i class="fas fa-bars"></i>
+            </div>
+
+            <!-- Nav Links Whole Right -->
+            <ul class="nav-links" id="navLinks">
+                <li class="nav-item"><a href="index.html">Home</a></li>
+                <li class="nav-item">
+                    <a href="#">Committees <i class="fas fa-chevron-down" style="font-size: 0.7em; margin-left: 5px;"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">AIPPM</a></li>
+                        <li><a href="#">UNGA</a></li>
+                        <li><a href="#">HUMAN RIGHTS COUNCIL</a></li>
+                        <li><a href="#">MOSSAD</a></li>
+                        <li><a href="#">CLIMATE CHANGE SUMMIT</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item"><a href="team.html">Team</a></li>
+                <li class="nav-item"><a href="#">Register</a></li>
+                <li class="nav-item"><a href="#">Resources</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- PAGE HEADER -->
+    <header class="page-header">
+        <div class="container">
+            <h1>Our Team</h1>
+            <div class="divider"></div>
+            <p style="color: #aaa; margin-top: 15px;">Meet the dedicated people behind SymbiMUN</p>
+        </div>
+    </header>
+
+    <!-- SECTION 1: FACULTY ADVISORS -->
+    <section class="team-category-section">
+        <div class="container">
+            <h2 class="category-title">Faculty Advisors</h2>
+            <div class="team-grid">
+                <div class="team-card">
+                    <div class="team-img"><i class="fas fa-chalkboard-teacher"></i></div>
+                    <h3 class="team-name">Sai Prashanth Mallelu</h3>
+                    <p class="team-role">Faculty Advisor</p>
+                </div>
+                <!-- Add more advisors here if needed -->
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 2: SECRETARIAT -->
+    <section class="team-category-section" style="background-color: #0a0a0a;">
+        <div class="container">
+            <h2 class="category-title">Secretariat</h2>
+            <div class="team-grid">
+                <div class="team-card">
+                    <div class="team-img"><i class="fas fa-user-tie"></i></div>
+                    <h3 class="team-name">Deepika Mishra</h3>
+                    <p class="team-role">Secretary General</p>
+                </div>
+                <div class="team-card">
+                    <div class="team-img"><i class="fas fa-user"></i></div>
+                    <h3 class="team-name">Name Here</h3>
+                    <p class="team-role">Director General</p>
+                </div>
+                 <div class="team-card">
+                    <div class="team-img"><i class="fas fa-user"></i></div>
+                    <h3 class="team-name">Name Here</h3>
+                    <p class="team-role">Charge D'Affaires</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 3: USGs & UDGs -->
+    <section class="team-category-section">
+        <div class="container">
+            <h2 class="category-title">USGs & UDGs</h2>
+            <div class="team-grid">
+                <div class="team-card">
+                    <div class="team-img"><i class="fas fa-user-friends"></i></div>
+                    <h3 class="team-name">Name Here</h3>
+                    <p class="team-role">Under Secretary General</p>
+                </div>
+                <div class="team-card">
+                    <div class="team-img"><i class="fas fa-user-friends"></i></div>
+                    <h3 class="team-name">Name Here</h3>
+                    <p class="team-role">Under Director General</p>
+                </div>
+                <div class="team-card">
+                    <div class="team-img"><i class="fas fa-user-friends"></i></div>
+                    <h3 class="team-name">Name Here</h3>
+                    <p class="team-role">Under Secretary General</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 4: DELEGATE AFFAIRS -->
+    <section class="team-category-section" style="background-color: #0a0a0a;">
+        <div class="container">
+            <h2 class="category-title">Delegate Affairs</h2>
+            <div class="team-grid">
+                <div class="team-card">
+                    <div class="team-img"><i class="fas fa-headset"></i></div>
+                    <h3 class="team-name">Name Here</h3>
+                    <p class="team-role">Head of Delegate Affairs</p>
+                </div>
+                <div class="team-card">
+                    <div class="team-img"><i class="fas fa-headset"></i></div>
+                    <h3 class="team-name">Name Here</h3>
+                    <p class="team-role">Member</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 5: INTERNATIONAL PRESS AFFAIRS -->
+    <section class="team-category-section">
+        <div class="container">
+            <h2 class="category-title">International Press Affairs</h2>
+            <div class="team-grid">
+                <div class="team-card">
+                    <div class="team-img"><i class="fas fa-camera"></i></div>
+                    <h3 class="team-name">Name Here</h3>
+                    <p class="team-role">Head of IP</p>
+                </div>
+                <div class="team-card">
+                    <div class="team-img"><i class="fas fa-pen-nib"></i></div>
+                    <h3 class="team-name">Name Here</h3>
+                    <p class="team-role">Editor in Chief</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 6: EXECUTIVE BOARD AFFAIRS -->
+    <section class="team-category-section" style="background-color: #0a0a0a;">
+        <div class="container">
+            <h2 class="category-title">Executive Board Affairs</h2>
+            <div class="team-grid">
+                <div class="team-card">
+                    <div class="team-img"><i class="fas fa-gavel"></i></div>
+                    <h3 class="team-name">Name Here</h3>
+                    <p class="team-role">Head of EB Affairs</p>
+                </div>
+                <div class="team-card">
+                    <div class="team-img"><i class="fas fa-balance-scale"></i></div>
+                    <h3 class="team-name">Name Here</h3>
+                    <p class="team-role">Member</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                
+                <!-- Location -->
+                <div class="footer-col">
+                    <div class="footer-icon"><i class="fas fa-map-marker-alt"></i></div>
+                    <div class="footer-text">
+                        <h4>Location</h4>
+                        <p>Symbiosis Institute of Technology,<br>Hyderabad, Telangana, India</p>
+                    </div>
+                </div>
+
+                <!-- Email -->
+                <div class="footer-col">
+                    <div class="footer-icon"><i class="fas fa-envelope"></i></div>
+                    <div class="footer-text">
+                        <h4>Contact Email</h4>
+                        <p>25070725009@sithyd.siu.edu.in</p>
+                    </div>
+                </div>
+
+                <!-- Phone / Contact Person -->
+                <div class="footer-col">
+                    <div class="footer-icon"><i class="fas fa-user-tie"></i></div>
+                    <div class="footer-text">
+                        <div class="contact-group">
+                            <span class="contact-label">Secretary General</span>
+                            <span>Deepika Mishra</span>
+                            <span>25070725009@sithyd.siu.edu.in</span>
+                        </div>
+                        <br>
+                        <div class="contact-group">
+                            <span class="contact-label">Faculty Advisor</span>
+                            <span>Sai Prashanth Mallelu</span>
+                            <span>saiprashanth@sithyd.siu.edu.in</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="social-icons">
+                <a href="#" class="social-circle"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="social-circle"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="social-circle"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        // Toggle Mobile Menu
+        window.toggleMenu = function() {
+            const nav = document.getElementById('navLinks');
+            nav.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>
